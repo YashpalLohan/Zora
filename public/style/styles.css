@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Oswald:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    /*  Palette */
+    --accent-orange: #e15222;
+    --bg-beige: #f2f1ef;
+    --text-black: #1a1a1a;
+    --dark-green: #11140c;
+    /* Section background color from image */
+    --border-thick: 2px solid #1a1a1a;
+    --border-thin: 1px solid #1a1a1a;
+
+    --font-heading: 'Antonio', 'Oswald', sans-serif;
+    --font-body: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-beige);
+    color: var(--text-black);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: white;
+    position: relative;
+    z-index: 1000;
+}
+
+.middle-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 4%;
+    border-bottom: var(--border-thick);
+}
+
+.brand-main {
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Base Sections */
+.section-magazine {
+    padding: 6rem 4%;
+    border-bottom: var(--border-thick);
+}
+
+.section-dark {
+    background-color: var(--dark-green);
+    color: white;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin-bottom: 4rem;
+}
+
+/* Components */
+.btn-orange {
+    font-family: var(--font-heading);
+    background: var(--accent-orange);
+    color: white;
+    padding: 1.25rem 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    line-height: 1;
+}
+
+.btn-outline {
+    background: none;
+    border: var(--border-thick);
+    color: var(--text-black);
+}
+
+.editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+/* Today's Stories Grid */
+.stories-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+}
+
+.story-card-small {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 3rem;
+    align-items: flex-start;
+}
+
+.story-card-small .img-container {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-card-small .img-container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.story-card-small h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.meta-info {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent-orange);
+    margin-bottom: 0.5rem;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border: var(--border-thin);
+}
+
+.gallery-caption {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 1rem;
+    border-top: 2px solid black;
+    padding-top: 0.5rem;
+    width: fit-content;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+}
+
+/* Magazine Cards */
+.mag-cover-card {
+    background: white;
+    color: var(--text-black);
+    padding: 1rem;
+    position: relative;
+}
+
+.mag-cover-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #eee;
+    margin-bottom: 1.5rem;
+}
+
+/* Subscribe Section */
+.subscribe-box {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    background: #e5e4e2;
+}
+
+.subscribe-text-area {
+    padding: 8rem 10%;
+}
+
+.subscribe-image-area {
+    background: #333;
+}
+
+.subscribe-input-group {
+    display: flex;
+    margin-top: 3rem;
+    border: var(--border-thick);
+}
+
+.subscribe-input-group input {
+    flex: 1;
+    padding: 1.5rem;
+    border: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+}
+
+/* Footer Magazine */
+footer
+
+/* Hero Slider */
+.magazine-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: white;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.magazine-slide {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.8s ease;
+}
+
+.magazine-slide.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slider-click-zones {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 100;
+    pointer-events: none;
+    /* Let clicks pass through except to the zones */
+}
+
+.zone-left,
+.zone-right {
+    width: 50%;
+    height: 100%;
+    pointer-events: auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSJwhiteIiBkPSJNMTkuNCAxMC42TDE0LjggMTZsNC42IDUuNC0xLjQgMS4yTDEyIDE2bTYtNy4yeiIvPjwvc3ZnPg=="), w-resize;
+}
+
+.zone-right {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSJwhiteIiBkPSJNMTIuNiAxMC42TDE3LjIgMTZsLTQuNiA1LjQgMS40IDEuMkwyMCAxNmwtNi03LjJ6Ii8+PC9zdmc+"), e-resize;
+}
+
+.magazine-footer {
+    padding: 6rem 4% 2rem;
+    background: var(--bg-beige);
+    border-top: var(--border-thick);
+}
+
+.footer-nav-magazine {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: var(--border-thin);
+}
+
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 4rem;
+    }
+
+    .editorial-grid,
+    .stories-grid,
+    .gallery-grid,
+    .subscribe-box {
+        grid-template-columns: 1fr;
+    }
+}

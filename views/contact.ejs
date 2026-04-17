@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZORA | Contact</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="middle-nav">
+            <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; width: 100px;">GET
+                IN<br>TOUCH</div>
+            <div class="brand-main">ZORA</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="/home" style="color: black; font-size: 1.2rem;"><i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 600px; padding: 10rem 1.5rem;">
+        <h1
+            style="font-family: var(--font-heading); font-size: 5rem; text-transform: uppercase; line-height: 0.9; margin-bottom: 3rem;">
+            Submit to the <br>Archive.</h1>
+        <p
+            style="font-family: var(--font-heading); font-size: 0.9rem; text-transform: uppercase; font-weight: 700; margin-bottom: 2rem; color: var(--accent-orange);">
+            Letters / Submissions / Feedback</p>
+
+        <form style="border-top: var(--border-thick); padding-top: 2rem;">
+            <div style="margin-bottom: 2rem;">
+                <label
+                    style="display: block; font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem;">Name</label>
+                <input type="text" placeholder="Your Name"
+                    style="width: 100%; padding: 1rem; border: var(--border-thin); font-family: inherit; background: transparent;">
+            </div>
+            <div style="margin-bottom: 2rem;">
+                <label
+                    style="display: block; font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem;">Email</label>
+                <input type="email" placeholder="email@example.com"
+                    style="width: 100%; padding: 1rem; border: var(--border-thin); font-family: inherit; background: transparent;">
+            </div>
+            <div style="margin-bottom: 3rem;">
+                <label
+                    style="display: block; font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem;">Message</label>
+                <textarea rows="6" placeholder="Your Message..."
+                    style="width: 100%; padding: 1rem; border: var(--border-thin); font-family: inherit; background: transparent; resize: none;"></textarea>
+            </div>
+
+            <button type="button" class="btn-orange" id="dispatch-btn" onclick="handleDispatch()" style="width: 100%; padding: 1.5rem; font-size: 1.25rem;">Dispatch Now</button>
+            
+            <div id="dispatch-msg" style="display: none; margin-top: 3rem; animation: slideUp 0.6s ease;">
+                <div style="font-family: var(--font-heading); font-size: 3rem; color: var(--accent-orange); line-height: 1; border-left: 5px solid var(--accent-orange); padding-left: 2rem;">
+                    SUCCESS.<br>
+                    <span style="font-size: 1.25rem; color: #1a1a1a;">NARRATIVE DISPATCHED TO EDITORIAL BOARD.</span>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <footer class="magazine-footer"
+        style="padding: 6rem 4% 4rem 4%; background: white; border-top: var(--border-thin);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; align-items: flex-start;">
+            <div>
+                <div class="brand-main"
+                    style="font-size: 8rem; color: var(--accent-orange); letter-spacing: -4px; line-height: 0.8; margin-bottom: 2rem;">
+                    ZORA</div>
+                <p style="max-width: 500px; color: #666; font-size: 0.9rem; line-height: 1.8;">
+                    Zora is a curated fashion magazine dedicated to high-fashion narratives and architectural design
+                    research. Established in 2026, we serve as a definitive resource for curators, designers, and
+                    historians seeking the intersection of movement and structure.
+                </p>
+            </div>
+            <div>
+                <h4
+                    style="font-family: var(--font-heading); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem;">
+                    EDITION 01</h4>
+                <p style="font-size: 0.8rem; color: #888; line-height: 1.8;">
+                    MAY 2026 / NEW YORK CITY<br>
+                    PUBLISHED BY ZORA MEDIA GROUP<br>
+                    PRINTED DIGITALLY WORLDWIDE
+                </p>
+            </div>
+            <div>
+                <h4
+                    style="font-family: var(--font-heading); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem;">
+                    NAVIGATION</h4>
+                <p style="font-size: 0.8rem; color: #888; line-height: 1.8;">
+                    <a href="/archive" style="color: inherit; text-decoration: none;">FULL ARCHIVE</a><br>
+                    <a href="/about" style="color: inherit; text-decoration: none;">ABOUT US</a><br>
+                    <a href="/home" style="color: inherit; text-decoration: none;">BACK TO FEED</a>
+                </p>
+            </div>
+        </div>
+        <div
+            style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.7rem; color: #aaa; text-transform: uppercase;">
+            &copy; 2026 ZORA MAGAZINE. REDEFINING THE DIGITAL NARRATIVE.
+        </div>
+    </footer>
+    <script>
+        function handleDispatch() {
+            const btn = document.getElementById('dispatch-btn');
+            const msg = document.getElementById('dispatch-msg');
+            const form = btn.parentElement;
+
+            if (msg) {
+                // Hide button, show large SUCCESS msg
+                btn.style.display = 'none';
+                msg.style.display = 'block';
+
+                // Redirect after 4 seconds
+                setTimeout(() => {
+                    window.location.href = '/home';
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZORA | PUBLISH</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 4rem;
+            background: white;
+            border: var(--border-thick);
+        }
+
+        .mag-input {
+            width: 100%;
+            padding: 1.5rem;
+            border: var(--border-thin);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            background: var(--bg-beige);
+        }
+
+        .mag-label {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+        }
+
+        .mag-textarea {
+            min-height: 300px;
+            resize: vertical;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="middle-nav">
+            <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; width: 100px;">EST.
+                2026<br>EDITION 01</div>
+            <div class="brand-main">PUBLISH</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="/home" class="btn-orange" style="padding: 0.5rem 1.5rem;">CANCEL</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-magazine">
+        <div class="form-container">
+            <h1 class="section-title" style="font-size: 3rem; margin-bottom: 2rem;">Draft Your Story</h1>
+
+            <form action="/home/create" method="POST">
+                <label class="mag-label">Story Title</label>
+                <input type="text" name="title" class="mag-input" placeholder="ENTER A BOLD HEADLINE..." required>
+
+                <label class="mag-label">Editorial Content</label>
+                <textarea name="body" class="mag-input mag-textarea" placeholder="START WRITING THE NARRATIVE..."
+                    required></textarea>
+
+                <label class="mag-label">Feature Image URL</label>
+                <input type="text" name="imageUrl" class="mag-input" placeholder="HTTP://IMAGE-LINK.JPG">
+
+                <label class="mag-label">Tags (Comma separated)</label>
+                <input type="text" name="tags" class="mag-input" placeholder="FASHION, LIFESTYLE, ART">
+
+                <button type="submit" class="btn-orange" style="width: 100%; padding: 2rem;">PUBLISH TO ARCHIVE</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="magazine-footer">
+        <div class="brand-main" style="font-size: 4rem; letter-spacing: -2px; text-align: left;">ZORA</div>
+    </footer>
+</body>
+
+</html>

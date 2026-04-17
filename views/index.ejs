@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZORA</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .split-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            border-top: var(--border-thick);
+        }
+
+        .hero-title-big {
+            font-family: var(--font-heading);
+            font-size: 15rem;
+            line-height: 0.75;
+            letter-spacing: -0.05em;
+            color: var(--accent-orange);
+            margin-bottom: 3rem;
+        }
+
+        .hero-magazine-box {
+            padding: 8rem 10%;
+            background: white;
+            border-right: var(--border-thin);
+        }
+
+        .hero-magazine-image {
+            background: url('/images/two.png') center/cover no-repeat;
+            position: relative;
+        }
+
+        .hero-magazine-image::after {
+            content: 'MAGAZINE';
+            position: absolute;
+            top: 4rem;
+            right: -2rem;
+            font-family: var(--font-heading);
+            font-size: 8rem;
+            color: white;
+            transform: rotate(90deg);
+            transform-origin: top right;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="middle-nav">
+            <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; width: 100px;">EST.
+                2026<br>EDITION 01</div>
+            <div class="brand-main">ZORA</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <% if (typeof currentUser !=='undefined' && currentUser) { %>
+                    <a href="/logout" style="color: black; font-size: 1.2rem;"><i class="fas fa-sign-out-alt"></i></a>
+                    <% } else { %>
+                        <a href="/login" class="btn-orange">LOGIN</a>
+                        <% } %>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="split-hero">
+            <div class="hero-magazine-box">
+                <div
+                    style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">
+                    ISSUE 01 &bull; SPECIAL EDITION</div>
+                <h1 class="hero-title-big">ZO<br>RA</h1>
+                <p
+                    style="font-size: 1.5rem; border-top: var(--border-thick); padding-top: 2rem; margin-bottom: 3rem; font-weight: 700; text-transform: uppercase;">
+                    A curated collection of digital stories, research, and designer perspectives from across the globe.
+                </p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="/login" class="btn-orange" style="font-size: 1.25rem; padding: 1rem 3rem;">Enter Zora</a>
+                    <a href="/signup"
+                        style="font-family: var(--font-heading); font-size: 1.25rem; padding: 1rem; border: var(--border-thick); display: flex; align-items: center; text-decoration: none; color: black; font-weight: 700;">JOIN
+                        US</a>
+                </div>
+            </div>
+            <div class="hero-magazine-image"></div>
+        </div>
+
+        <section
+            style="padding: 10rem 4%; background: var(--text-black); color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem;">
+            <div>
+                <h2
+                    style="font-family: var(--font-heading); font-size: 6rem; text-transform: uppercase; line-height: 0.9;">
+                    The Art of Content.</h2>
+            </div>
+            <div
+                style="display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #333; padding-left: 4rem;">
+                <p style="font-size: 1.5rem; margin-bottom: 2rem;">Zora is an elite editorial ecosystem. A global
+                    definitive for high-fashion narratives, architectural research, and the evolution of the modern
+                    silhouette.</p>
+                <p style="color: #888;">Bridge the gap between fast-paced digital media and the timeless, intentional
+                    quality of high-end curation.</p>
+            </div>
+        </section>
+        <section style="padding: 10rem 4%; background: white; border-top: var(--border-thick);">
+            <h2
+                style="font-family: var(--font-heading); font-size: 8rem; text-transform: uppercase; line-height: 0.8; margin-bottom: 6rem; letter-spacing: -4px;">
+                THE<br>MANIFESTO</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem;">
+                <div style="border-top: 2px solid black; padding-top: 2rem;">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-orange);">
+                        01 / CURATION</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8; color: #666;">We believe in the power of the filtered
+                        lens. In an age of digital noise, Zora serves as a steady hand, selecting only the narratives
+                        that possess genuine architectural and cultural weight.</p>
+                </div>
+                <div style="border-top: 2px solid black; padding-top: 2rem;">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-orange);">
+                        02 / STRUCTURE</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8; color: #666;">Our design philosophy is rooted in the
+                        intersection of movement and logic. Every story we publish is analyzed for its structural
+                        integrity and its contribution to the modern silhouette.</p>
+                </div>
+                <div style="border-top: 2px solid black; padding-top: 2rem;">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-orange);">
+                        03 / PRESERVATION</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8; color: #666;">Digital doesn't have to mean temporary.
+                        We treat every digital artifact with the same reverence as a physical archive, ensuring that
+                        high-fashion history is preserved for future generations.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 8rem 4%; text-align: center; border-top: var(--border-thick);">
+        <div class="brand-main" style="font-size: 20rem; opacity: 0.05;">ZORA</div>
+        <p style="font-family: var(--font-heading); font-size: 2rem; margin-top: -5rem;">GET INSPIRED TODAY.</p>
+    </footer>
+</body>
+
+</html>

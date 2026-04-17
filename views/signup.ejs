@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZORA | Sign Up</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css">
+</head>
+
+<body style="background: var(--bg-light);">
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+        <div
+            style="background: white; padding: 3rem; width: 100%; max-width: 500px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <div class="brand-main" style="font-size: 2rem; color: var(--accent-orange); letter-spacing: -1px; margin-bottom: 1rem;">ZORA</div>
+                <h1 style="font-size: 1.5rem; font-weight: 800; color: var(--text-dark);">Join the Community</h1>
+                <p style="color: var(--text-gray); margin-top: 0.5rem;">Start sharing your thoughts with the world.</p>
+            </div>
+
+            <form action="/register" method="POST">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Full
+                        Name</label>
+                    <input type="text" name="name" placeholder="John Doe" required
+                        style="width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 12px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label
+                        style="display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Username</label>
+                    <input type="text" name="username" placeholder="johndoe" required
+                        style="width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 12px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <label
+                        style="display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required
+                        style="width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 12px; font-family: inherit;">
+                </div>
+
+                <button type="submit" class="btn-black"
+                    style="width: 100%; padding: 1rem; border: none; font-size: 1rem; cursor: pointer;">Create
+                    Account</button>
+            </form>
+
+            <div style="margin-top: 2rem; text-align: center; font-size: 0.95rem; color: var(--text-gray);">
+                Already have an account? <a href="/login"
+                    style="color: var(--primary-red); font-weight: 700; text-decoration: none;">Sign in here</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

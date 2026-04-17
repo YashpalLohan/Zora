@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZORA | Home</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="middle-nav">
+            <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; width: 100px;">EST.
+                2026<br>EDITION 01</div>
+            <div class="brand-main">ZORA</div>
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <% if (typeof currentUser !=='undefined' && currentUser) { %>
+                    <span style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700;">
+                        <%= (currentUser.name || currentUser.username).toUpperCase() %>
+                    </span>
+                    <% if (isAdmin) { %>
+                        <a href="/admin"
+                            style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--accent-orange); text-decoration: none;">ADMIN</a>
+                        <% } %>
+                            <a href="/logout" style="color: black; font-size: 1.2rem;"><i
+                                    class="fas fa-sign-out-alt"></i></a>
+                            <% } else { %>
+                                <a href="/login" class="btn-orange" style="padding: 0.5rem 1.5rem;">LOGIN</a>
+                                <% } %>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <% if (typeof posts !=='undefined' && posts) { %>
+            <!-- 1. HERO SLIDER -->
+            <% const placeholders=[ { title: "NEO-GOTHIC REVIVAL" ,
+                body: "Exploring the dark, structured elegance of the new season. Leather meets lace in a rhythmic dance of shadows and light, redefining the nocturnal aesthetic for a new generation of avant-garde curators. A deep dive into the silhouettes that haunt the runway."
+                , imageUrl: "/images/mock2.png" , createdAt: new Date(), author: { name: " Staff" } }, {
+                title: "THE GLASS RUNWAY" ,
+                body: "Future-forward iridescent fabrics captured in a rain-slicked neon metropolis. A profound study in urban reflection that explores how light interacts with translucent textiles in the heart of the city. Witness the intersection of high-tech weaving and architectural cityscapes."
+                , imageUrl: "/images/mock3.png" , createdAt: new Date(), author: { name: "Editorial Team" } }, {
+                title: "BRUTALIST SILHOUETTES" ,
+                body: "Raw concrete meets architectural couture. Geometric forms that drastically redefine the boundary of the human frame, inspired by the monolithic structures of mid-century design. This campaign explores the tension between soft fabric and hard, unyielding geometry."
+                , imageUrl: "/images/mock4.png" , createdAt: new Date(), author: { name: "Staff Writer" } }, {
+                title: "KINETIC TEXTILES" ,
+                body: "Energy in motion. High-speed captures of liquid silk and revolutionary multi-tonal weaving techniques that respond to every movement. An exploration of how contemporary garment design is shifting from static objects to living, breathing organisms of color."
+                , imageUrl: "/images/mock5.png" , createdAt: new Date(), author: { name: " Staff" } }, {
+                title: "URBAN ARTIFACTS" ,
+                body: "A photographic journey through the raw textures of the city, from aged brick and rusted iron to polished steel silhouettes. We look at the overlooked corners of New York that provide the primary color palette for this season’s industrial-inspired collections."
+                , imageUrl: "/images/mock1.png" , createdAt: new Date(), author: { name: "Archivist" } }, {
+                title: "MINIMALIST SOUL" ,
+                body: "The core principles of quiet luxury. A deep dive into the pioneer brands that are prioritizing artisanal craft and material integrity over flashy logos. Discover why the most powerful statements this year are being made through silence and perfect tailoring."
+                , imageUrl: "/images/mock6.png" , createdAt: new Date(), author: { name: "Style Editor" } }, {
+                title: "THE NEW ELEGANCE" ,
+                body: "Daring jewelry trends and the iconic designers speaking on the future of sustainable haute couture. From recycled precious metals to lab-grown gemstones, we sit down with the innovators who are proving that luxury and ethics are no longer mutually exclusive."
+                , imageUrl: "/images/mock7.png" , createdAt: new Date(), author: { name: "Jewelry Lead" } }, {
+                title: "FORM OR FUNCTION?" ,
+                body: "An analysis of wearable technology and its seamless integration into the high-fashion ecosystem of 2026. This feature looks at how biometric sensors and smart-fabrics are transforming the catwalk into a laboratory for the future of human clothing and health."
+                , imageUrl: "/images/mock8.png" , createdAt: new Date(), author: { name: "Tech Correspondent" } }, {
+                title: "CONCRETE JUNGLE" ,
+                body: "Streetwear's definitive transition into the luxury tier. We investigate why high-fashion houses are increasingly looking to the sidewalks for their primary inspiration, blending the grit of the street with the refinement of the atelier in a new urban uniform."
+                , imageUrl: "/images/mock9.png" , createdAt: new Date(), author: { name: "Staff Writer" } }, {
+                title: "SCULPTURAL DREAMS" ,
+                body: "Avant-garde menswear preview. Pushing the limits of traditional tailoring into the realm of fine art, this collection features garments that double as wearable sculptures, challenging our perceptions of gender, proportion, and the very purpose of a suit."
+                , imageUrl: "/images/mock10.png" , createdAt: new Date(), author: { name: "Menswear Editor" } } 
+                ]; 
+                
+                // Combine real posts with placeholders until we hit 10 
+                let sliderPosts = [...posts]; 
+                let pIndex = 0; 
+                while (sliderPosts.length < 10 && pIndex < placeholders.length) { 
+                    sliderPosts.push(placeholders[pIndex]);
+                    pIndex++; 
+                } 
+            %>
+                <section class="magazine-slider-container">
+                    <div class="slider-wrapper">
+                        <% sliderPosts.slice(0, 10).forEach((slide, index)=> { %>
+                            <div class="magazine-slide <%= index === 0 ? 'active' : '' %>" data-index="<%= index %>">
+                                <div class="section-magazine editorial-grid"
+                                    style="background: white; padding: 6rem 4% 8rem 4%;">
+                                    <div
+                                        style="width: 100%; aspect-ratio: 1/1.2; overflow: hidden; border: var(--border-thin);">
+                                        <img src="<%= slide.imageUrl || '/images/one.png' %>"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div style="padding-top: 4rem;">
+                                        <div class="meta-info">FEATURED <%= index + 1 %> / <%= new
+                                                    Date(slide.createdAt).toLocaleDateString().toUpperCase() %>
+                                                    <% if(slide.author) { %> &bull; BY <%= slide.author.name ||
+                                                            slide.author.username %>
+                                                            <% } else { %> &bull; BY ARCHIVE <% } %>
+                                        </div>
+                                        <% if (slide._id) { %>
+                                            <a href="/home/<%= slide._id %>"
+                                                style="text-decoration: none; color: inherit;">
+                                                <h1 class="section-title">
+                                                    <%= slide.title %>
+                                                </h1>
+                                            </a>
+                                            <% } else { %>
+                                                <h1 class="section-title">
+                                                    <%= slide.title %>
+                                                </h1>
+                                                <% } %>
+                                                    <p
+                                                        style="font-size: 1.25rem; line-height: 1.8; margin-bottom: 2rem; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+                                                        <%= slide.body %>
+                                                    </p>
+                                                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                                                        <% if (slide._id) { %>
+                                                            <a href="/home/<%= slide._id %>" class="btn-orange">READ
+                                                                FULL STORY</a>
+                                                            <% if (currentUser && (isAdmin || (slide.author &&
+                                                                slide.author._id.toString()===currentUser._id.toString())))
+                                                                { %>
+                                                                <a href="/home/<%= slide._id %>/edit"
+                                                                    class="btn-orange btn-outline">EDIT</a>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <a href="<%= slide.target %>"
+                                                                            class="btn-orange">VIEW COLLECTION</a>
+                                                                        <% } %>
+                                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+
+                    <!-- Invisible Click Zones -->
+                    <div class="slider-click-zones">
+                        <div class="zone-left"></div>
+                        <div class="zone-right"></div>
+                    </div>
+                </section>
+
+                <!-- 2. TODAY'S STORIES (Dark Section) -->
+                <section class="section-magazine section-dark">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+                        <h2 class="section-title" style="margin-bottom: 0;">TODAY'S STORIES</h2>
+                        <a href="/archive"
+                            style="color: white; font-family: var(--font-heading); text-transform: uppercase; text-decoration: none;">View
+                            All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="stories-grid">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                            <% for(let i=1; i < Math.min(posts.length, 4); i++) { %>
+                                <div class="story-card-small">
+                                    <div class="img-container">
+                                        <img src="<%= posts[i].imageUrl || '/images/default-blog.jpg' %>">
+                                    </div>
+                                    <div>
+                                        <div class="meta-info">LIFESTYLE / <%= new
+                                                Date(posts[i].createdAt).toLocaleDateString() %>
+                                                <% if(posts[i].author) { %> &bull; BY <%= posts[i].author.name ||
+                                                        posts[i].author.username %>
+                                                        <% } %>
+                                        </div>
+                                        <h3>
+                                            <%= posts[i].title %>
+                                        </h3>
+                                        <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                                            <a href="/home/<%= posts[i]._id %>"
+                                                style="color: #888; text-decoration: none; font-size: 0.8rem; font-family: var(--font-heading); text-transform: uppercase;">READ
+                                                MORE</a>
+                                            <% if (currentUser && (isAdmin || (posts[i].author &&
+                                                posts[i].author._id.toString()===currentUser._id.toString()))) { %>
+                                                <a href="/home/<%= posts[i]._id %>/edit"
+                                                    style="color: var(--accent-orange); text-decoration: none; font-size: 0.8rem; font-family: var(--font-heading); text-transform: uppercase; font-weight: 700;">EDIT</a>
+                                                <form action="/home/<%= posts[i]._id %>/delete" method="POST"
+                                                    style="display:inline;" onsubmit="return confirm('Delete?')">
+                                                    <button type="submit"
+                                                        style="background:none; border:none; color:#ccc; cursor:pointer; font-family:var(--font-heading); font-size:0.8rem;">DELETE</button>
+                                                </form>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                        <!-- Large vertical card in stories section -->
+                        <% if (posts.length> 4) { %>
+                            <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 4rem;">
+                                <div style="width: 100%; aspect-ratio: 3/4; overflow: hidden; margin-bottom: 2rem;">
+                                    <img src="<%= posts[4].imageUrl || '/images/one.png' %>"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="meta-info">FASHION / <%= new Date(posts[4].createdAt).toLocaleDateString()
+                                        %>
+                                        <% if(posts[4].author) { %> &bull; BY <%= posts[4].author.name ||
+                                                posts[4].author.username %>
+                                                <% } %>
+                                </div>
+                                <a href="/home/<%= posts[4]._id %>" style="text-decoration: none; color: inherit;">
+                                    <h2
+                                        style="font-family: var(--font-heading); font-size: 2.5rem; text-transform: uppercase;">
+                                        <%= posts[4].title %>
+                                    </h2>
+                                </a>
+                                <% if (currentUser && (isAdmin || (posts[4].author &&
+                                    posts[4].author._id.toString()===currentUser._id.toString()))) { %>
+                                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                                        <a href="/home/<%= posts[4]._id %>/edit"
+                                            style="color: var(--accent-orange); text-decoration: none; font-size: 0.8rem; font-family: var(--font-heading); text-transform: uppercase; font-weight: 700;">EDIT
+                                            STORY</a>
+                                        <form action="/home/<%= posts[4]._id %>/delete" method="POST"
+                                            onsubmit="return confirm('Delete story?')">
+                                            <button type="submit"
+                                                style="background:none; border:none; color:#ccc; cursor:pointer; font-family:var(--font-heading); font-size:0.8rem;">DELETE</button>
+                                        </form>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <% } %>
+                    </div>
+                </section>
+
+                <!-- 3. EVENT LIST -->
+                <section class="section-magazine" style="background: #e5e4e2;">
+                    <h2 class="section-title" style="text-align: center;">EVENT LIST</h2>
+                    <div class="event-filters"
+                        style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">
+                        <a href="javascript:void(0)" class="event-filter active" data-type="all"
+                            style="color: var(--accent-orange); border-bottom: 2px solid var(--accent-orange); text-decoration: none;">All
+                            Events</a>
+                        <a href="javascript:void(0)" class="event-filter" data-type="upcoming"
+                            style="color: #888; text-decoration: none; transition: color 0.3s;">Upcoming</a>
+                        <a href="javascript:void(0)" class="event-filter" data-type="past"
+                            style="color: #888; text-decoration: none; transition: color 0.3s;">Past</a>
+                        <a href="javascript:void(0)" class="event-filter" data-type="virtual"
+                            style="color: #888; text-decoration: none; transition: color 0.3s;">Virtual</a>
+                    </div>
+                    <div
+                        style="display: flex; background: #000; border: var(--border-thick); height: 650px; width: 100%; overflow: hidden; box-sizing: border-box;">
+                        <div id="event-img-div"
+                            style="flex: 1; background: url('/images/event1.png') center top / cover no-repeat; height: 100%;">
+                        </div>
+                        <div
+                            style="flex: 1; background: #000; color: white; padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center;">
+                            <div id="event-meta" class="meta-info"
+                                style="color: var(--accent-orange); font-size: 0.8rem;">MAY 2026 &bull; NEW YORK CITY
+                            </div>
+                            <h2 id="event-title"
+                                style="font-family: var(--font-heading); font-size: 6rem; text-transform: uppercase; line-height: 0.85; margin-bottom: 2rem; letter-spacing: -2px;">
+                                URBAN RUNAWAY</h2>
+                            <p id="event-desc"
+                                style="margin-bottom: 3rem; color: #888; font-size: 1.2rem; line-height: 1.6; max-width: 500px;">
+                                The annual street fashion showcase returning to the heart of Manhattan. Experience the
+                                intersection of architecture and movement.</p>
+                            <div style="display: flex;">
+                                <a id="event-link" href="/contact?event=urban_runaway" class="btn-orange"
+                                    style="padding: 1.5rem 4rem; width: fit-content;">GET TICKETS</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. FASHION PHOTOSHOOT (Gallery) -->
+                <section id="gallery" class="section-magazine" style="background: white;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+                        <h2 class="section-title" style="margin-bottom: 0;">FASHION PHOTOSHOOT</h2>
+                    </div>
+                    <div class="gallery-grid">
+                        <div class="gallery-item" onclick="openGalleryDetail('URBAN BRUTALISM', 'ISSUE 01', 'A study of architectural form meeting street-level utility. Shot on location in the industrial districts of Berlin, this series captures the raw intersection of concrete and couture.', '/images/six.jpg')">
+                            <img src="/images/six.jpg">
+                            <div class="gallery-caption">URBAN BRUTALISM &bull; ISSUE 01</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryDetail('KINETIC MOTION', 'MOTION STUDY', 'Exploring the fluid mechanics of high-performance fabrics in high-fashion contexts. These frames capture the blur of progress and the elegance of speed.', '/images/two.png')">
+                            <img src="/images/two.png">
+                            <div class="gallery-caption">KINETIC MOTION &bull; MOTION STUDY</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryDetail('MODERNIST SILHOUETTE', 'VOL. 2', 'Clean lines and sharp voids. This collection focuses on the negative space between the garment and the body, creating a new geometry for 2026.', '/images/three.png')">
+                            <img src="/images/three.png">
+                            <div class="gallery-caption">MODERNIST SILHOUETTE &bull; VOL. 2</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryDetail('THE GLASS RUNWAY', 'SPRING 26', 'Transparency as a material and a metaphor. Layered silks and glass-beaded textures interact with light to create a shimmering, ethereal presence.', '/images/four.png')">
+                            <img src="/images/four.png">
+                            <div class="gallery-caption">THE GLASS RUNWAY &bull; SPRING 26</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryDetail('NEO-GOTHIC STRUCTURE', 'DETAIL', 'Dark romancism meets rigid engineering. A close-up look at the intricate skeletal work supporting the most avant-garde pieces of the season.', '/images/five.png')">
+                            <img src="/images/five.png">
+                            <div class="gallery-caption">NEO-GOTHIC STRUCTURE &bull; DETAIL</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryDetail('ETHEREAL MONOCHROME', 'ARCHIVE', 'A retrospective of Zoras most iconic black-and-white narratives. Stripping away color to reveal the pure essence of design and shadow.', '/images/one.png')">
+                            <img src="/images/one.png" style="filter: grayscale(1);">
+                            <div class="gallery-caption">ETHEREAL MONOCHROME &bull; ARCHIVE</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. MAGAZINE COLLECTIONS -->
+                <section id="collections" class="section-magazine section-dark">
+                    <h2 class="section-title" style="text-align: center;">MAGAZINE COLLECTIONS</h2>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem;">
+                        <div class="mag-cover-card" onclick="openIssueDetail('MODE MAGAZINE', 'THE SCULPTURAL SHIFT', 'EDITION 01', 'MAY 2026', 'Focusing on the intersection of volumetric fashion and architectural void. This issue explores how silence becomes a texture.', '/images/m1.png')" style="cursor: pointer;">
+                            <div class="mag-cover-img" style="background: url('/images/m1.png') center/cover;"></div>
+                            <h4 style="font-family: var(--font-heading); text-transform: uppercase;">MODE MAGAZINE</h4>
+                            <div style="font-size: 0.8rem; color: #888;">THE SCULPTURAL SHIFT &bull; EDITION 01</div>
+                        </div>
+                        <div class="mag-cover-card" onclick="openIssueDetail('MODERNE', 'ARCHITECTURAL VISIONS', 'SPRING 2026', 'APRIL 2026', 'A deep dive into the brutalist roots of contemporary streetwear. Featuring exclusive interviews with the architects of the new silhouette.', '/images/m2.png')" style="cursor: pointer;">
+                            <div class="mag-cover-img" style="background: url('/images/m2.png') center/cover;"></div>
+                            <h4 style="font-family: var(--font-heading); text-transform: uppercase;">MODERNE</h4>
+                            <div style="font-size: 0.8rem; color: #888;">ARCHITECTURAL VISIONS &bull; SPRING 2026</div>
+                        </div>
+                        <div class="mag-cover-card" onclick="openIssueDetail('AURUM', 'THE ART OF ADORNMENT', 'VOLUME 45', 'JUNE 2026', 'Exploring the transition from physical precious metals to digital assets. A study in jewelry that exists only in the mind and the machine.', '/images/m3.png')" style="cursor: pointer;">
+                            <div class="mag-cover-img" style="background: url('/images/m3.png') center/cover;"></div>
+                            <h4 style="font-family: var(--font-heading); text-transform: uppercase;">AURUM</h4>
+                            <div style="font-size: 0.8rem; color: #888;">THE ART OF ADORNMENT &bull; VOLUME 45</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. SUBSCRIBE SECTION -->
+                <section class="subscribe-box">
+                    <div class="subscribe-text-area">
+                        <h2
+                            style="font-family: var(--font-heading); font-size: 10rem; text-transform: uppercase; line-height: 0.8; margin-bottom: 2rem;">
+                            SUBSCRIBE<br>NOW</h2>
+                        <div class="subscribe-input-group">
+                            <input type="email" id="sub-email" placeholder="YOUR EMAIL ADDRESS">
+                            <button class="btn-orange" onclick="handleSubscribe()"
+                                style="padding: 1.5rem 3rem;">SEND</button>
+                        </div>
+
+                        <!-- Improved Success State -->
+                        <div id="sub-msg" style="display: none; margin-top: 3rem; animation: slideUp 0.6s ease;">
+                            <div
+                                style="font-family: var(--font-heading); font-size: 3rem; color: var(--accent-orange); line-height: 1; border-left: 5px solid var(--accent-orange); padding-left: 2rem;">
+                                CONFIRMED.<br>
+                                <span style="font-size: 1.25rem; color: #1a1a1a;">YOUR ACCESS TO ZORA IS NOW
+                                    ACTIVE.</span>
+                            </div>
+                        </div>
+                        <div id="sub-sub"
+                            style="margin-top: 2rem; font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">
+                            JOIN 5,000+ CURATORS WORLDWIDE</div>
+                    </div>
+                    <div class="subscribe-image-area" style="background: url('/images/seven.jpg') center/cover;"></div>
+                </section>
+
+                <% } else { %>
+                    <div style="text-align: center; padding: 10rem 4%;">
+                        <h1 class="section-title">EMPTY ARCHIVE</h1>
+                        <a href="/home/create" class="btn-orange">PUBLISH FIRST STORY</a>
+                    </div>
+                    <% } %>
+    </main>
+
+    <footer class="magazine-footer"
+        style="padding: 6rem 4% 4rem 4%; background: white; border-top: var(--border-thin);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; align-items: flex-start;">
+            <div>
+                <div class="brand-main"
+                    style="font-size: 8rem; color: var(--accent-orange); letter-spacing: -4px; line-height: 0.8; margin-bottom: 2rem;">
+                    ZORA</div>
+                <p style="max-width: 500px; color: #666; font-size: 0.9rem; line-height: 1.8;">
+                    Zora is a curated fashion magazine dedicated to high-fashion narratives and architectural design
+                    research. Established in 2026, we serve as a definitive resource for curators, designers, and
+                    historians seeking the intersection of movement and structure.
+                </p>
+            </div>
+            <div>
+                <h4
+                    style="font-family: var(--font-heading); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem;">
+                    EDITION 01</h4>
+                <p style="font-size: 0.8rem; color: #888; line-height: 1.8;">
+                    MAY 2026 / NEW YORK CITY<br>
+                    PUBLISHED BY MEDIA GROUP<br>
+                    PRINTED DIGITALLY WORLDWIDE
+                </p>
+            </div>
+            <div>
+                <h4
+                    style="font-family: var(--font-heading); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem;">
+                    NAVIGATION</h4>
+                <p style="font-size: 0.8rem; color: #888; line-height: 1.8;">
+                    <a href="/archive" style="color: inherit; text-decoration: none;">FULL ARCHIVE</a><br>
+                    <a href="/about" style="color: inherit; text-decoration: none;">ABOUT US</a><br>
+                    <a href="/contact" style="color: inherit; text-decoration: none;">CONTACT US</a><br>
+                    <a href="/privacy" style="color: inherit; text-decoration: none;">PRIVACY / TERMS</a>
+                </p>
+            </div>
+        </div>
+        <div
+            style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.7rem; color: #aaa; text-transform: uppercase; display: flex; justify-content: space-between;">
+            <div>&copy; 2026 ZORA MAGAZINE. REDEFINING THE DIGITAL NARRATIVE.</div>
+            <div>
+                <a href="/privacy" style="color: inherit; text-decoration: none;">PRIVACY</a> /
+                <a href="/terms" style="color: inherit; text-decoration: none;">TERMS</a> /
+                <a href="/accessibility" style="color: inherit; text-decoration: none;">ACCESSIBILITY</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.magazine-slide');
+            const zoneLeft = document.querySelector('.zone-left');
+            const zoneRight = document.querySelector('.zone-right');
+            let currentS = 0;
+            let slideInterval;
+
+            function showS(n) {
+                if (slides.length === 0) return;
+                slides.forEach(s => s.classList.remove('active'));
+                currentS = (n + slides.length) % slides.length;
+                slides[currentS].classList.add('active');
+            }
+
+            if (zoneLeft) zoneLeft.onclick = (e) => {
+                e.stopPropagation();
+                showS(currentS - 1);
+                resetInterval();
+            };
+            if (zoneRight) zoneRight.onclick = (e) => {
+                e.stopPropagation();
+                showS(currentS + 1);
+                resetInterval();
+            };
+
+            // Event Switcher Logic
+            const eventFilters = document.querySelectorAll('.event-filter');
+            const eventData = {
+                all: {
+                    img: "/images/event1.png",
+                    meta: "MAY 2026 &bull; NEW YORK CITY",
+                    title: "URBAN RUNAWAY",
+                    desc: "The annual street fashion showcase returning to the heart of Manhattan. Experience the intersection of architecture and movement.",
+                    link: "/contact?event=urban_runaway"
+                },
+                upcoming: {
+                    img: "/images/event2.png",
+                    meta: "AUGUST 2026 &bull; MILAN",
+                    title: "SUMMER SOIRÉE",
+                    desc: "An exclusive rooftop gathering featuring the next generation of Italian couture. Limited press invitations available.",
+                    link: "/contact?event=summer_soiree"
+                },
+                past: {
+                    img: "/images/event3.png",
+                    meta: "MARCH 2026 &bull; PARIS",
+                    title: "L'ART DU TEXTILE",
+                    desc: "A retrospective look at the revolutionary fabric designs that redefined the runway last spring.",
+                    link: "/contact?event=art_du_textile"
+                },
+                virtual: {
+                    img: "/images/event4.png",
+                    meta: "LIVE STREAM &bull; GLOBAL",
+                    title: "DIGITAL FRONTIER",
+                    desc: "Exploring the boundary between 3D modeling and physical fashion. Join the webinar with top tech-designers.",
+                    link: "/contact?event=digital_frontier"
+                }
+            };
+
+            eventFilters.forEach(filter => {
+                filter.addEventListener('click', function () {
+                    const type = this.dataset.type;
+                    const data = eventData[type];
+
+                    // Update UI
+                    eventFilters.forEach(f => {
+                        f.classList.remove('active');
+                        f.style.color = '#888';
+                        f.style.borderBottom = 'none';
+                    });
+
+                    this.classList.add('active');
+                    this.style.color = 'var(--accent-orange)';
+                    this.style.borderBottom = '2px solid var(--accent-orange)';
+
+                    // Update Content with animation
+                    const container = document.getElementById('event-title').parentElement.parentElement;
+                    container.style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('event-img-div').style.backgroundImage = `url('${data.img}')`;
+                        document.getElementById('event-meta').innerHTML = data.meta;
+                        document.getElementById('event-title').innerText = data.title;
+                        document.getElementById('event-desc').innerText = data.desc;
+                        document.getElementById('event-link').href = data.link;
+                        container.style.opacity = '1';
+                    }, 300);
+                });
+            });
+
+            function startInterval() {
+                slideInterval = setInterval(() => showS(currentS + 1), 4000);
+            }
+
+        });
+
+        // Subscription Handler (Moved outside for global scope)
+        function handleSubscribe() {
+            const emailInput = document.getElementById('sub-email');
+            const msg = document.getElementById('sub-msg');
+            const subTitle = document.getElementById('sub-sub');
+            const inputGroup = emailInput.parentElement;
+
+            if (emailInput && emailInput.value.includes('@')) {
+                // Hide input & sub-title, show large CONFIRMED msg
+                inputGroup.style.display = 'none';
+                subTitle.style.display = 'none';
+                msg.style.display = 'block';
+
+                // After 5 seconds, reset the interface
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                    inputGroup.style.display = 'flex';
+                    subTitle.style.display = 'block';
+                    emailInput.value = '';
+                }, 5000);
+            } else {
+                alert('PLEASE ENTER A VALID EMAIL ADDRESS');
+            }
+        }
+
+        // GLOBAL DETAIL MODAL LOGIC
+        const detailModal = document.createElement('div');
+        detailModal.id = 'detailModal';
+        detailModal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: white; display: none; z-index: 10000;
+                padding: 10rem 4%; align-items: center; justify-content: center;
+                animation: fadeIn 0.4s ease;
+            `;
+        detailModal.innerHTML = `
+                <div style="max-width: 1200px; width: 100%; position: relative; display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: center;">
+                    <div onclick="document.getElementById('detailModal').style.display='none'" style="position: absolute; top: -5rem; right: 0; cursor: pointer; font-family: var(--font-heading); border-bottom: 2px solid black; padding-bottom: 5px;">CLOSE ARCHIVE</div>
+                    
+                    <!-- Cover/Gallery Image Side -->
+                    <div style="width: 100%; aspect-ratio: 1/1.4; overflow: hidden; border: var(--border-thick); background: #f0f0f0;">
+                        <img id="detail-img" src="" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Content Side -->
+                    <div>
+                        <div class="meta-info" id="detail-meta" style="color: var(--accent-orange); font-size: 0.85rem; letter-spacing: 2px;"></div>
+                        <h1 id="detail-title" style="font-family: var(--font-heading); font-size: 6rem; text-transform: uppercase; line-height: 0.9; margin: 1.5rem 0; letter-spacing: -2px;"></h1>
+                        <h3 id="detail-sub" style="font-family: var(--font-heading); margin-bottom: 3rem; color: #888; font-size: 1.5rem; text-transform: uppercase;"></h3>
+                        <p id="detail-desc" style="font-size: 1.25rem; line-height: 1.8; margin-bottom: 4rem; color: #333; max-width: 500px;"></p>
+                        <a href="/archive" class="btn-orange" style="padding: 1.5rem 4rem; display: inline-block;">EXPLORE FULL ARCHIVE</a>
+                    </div>
+                </div>
+            `;
+        document.body.appendChild(detailModal);
+
+        window.openIssueDetail = function (name, sub, ed, date, desc, img) {
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-sub').innerText = sub;
+            document.getElementById('detail-meta').innerText = ed + ' • ' + date;
+            document.getElementById('detail-desc').innerText = desc;
+            document.getElementById('detail-img').src = img;
+            detailModal.style.display = 'flex';
+        };
+
+        window.openGalleryDetail = function (title, sub, desc, img) {
+            document.getElementById('detail-title').innerText = title;
+            document.getElementById('detail-sub').innerText = sub;
+            document.getElementById('detail-meta').innerText = 'EXHIBITION • GALLERY';
+            document.getElementById('detail-desc').innerText = desc;
+            document.getElementById('detail-img').src = img;
+            detailModal.style.display = 'flex';
+        };
+    </script>
+</body>
+
+</html>

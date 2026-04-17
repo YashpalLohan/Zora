@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZORA | COMMAND CENTER</title>
+    <link rel="icon" href="/images/favicon.jpg">
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .admin-table-container {
+            background: white;
+            border: var(--border-thick);
+            margin-top: 4rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-body);
+        }
+
+        th {
+            background: var(--dark-green);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: left;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 1.5rem 2rem;
+            border-bottom: var(--border-thin);
+            vertical-align: middle;
+        }
+
+        .stat-banner {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-box {
+            background: white;
+            border: var(--border-thick);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            color: var(--accent-orange);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #888;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="middle-nav">
+            <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; width: 100px;">
+                SYSTEM<br>OVERVIEW</div>
+            <div class="brand-main">ADMIN</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="/home" class="btn-orange" style="padding: 0.5rem 1.5rem;">BACK TO FEED</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-magazine">
+        <h1 class="section-title">Command Center</h1>
+
+        <div class="stat-banner">
+            <div class="stat-box">
+                <div class="stat-value">
+                    <%= posts.length %>
+                </div>
+                <div class="stat-label">Total Articles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">
+                    <%= users.length %>
+                </div>
+                <div class="stat-label">Active Curators</div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="font-size: 3rem; margin-bottom: 2rem;">Editorial Pipeline</h2>
+        <div class="admin-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>HEADLINE</th>
+                        <th>AUTHOR</th>
+                        <th>DATE</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% posts.forEach(post=> { %>
+                        <tr>
+                            <td style="font-weight: 700; font-family: var(--font-heading); font-size: 1.25rem;">
+                                <%= post.title.toUpperCase() %>
+                            </td>
+                            <td style="font-style: italic;">
+                                <%= post.author ? post.author.name || post.author.username : 'Anonymous' %>
+                            </td>
+                            <td style="font-size: 0.9rem; color: #666;">
+                                <%= new Date(post.createdAt).toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <div style="display: flex; gap: 1rem;">
+                                    <a href="/home/<%= post._id %>/edit"
+                                        style="color: black; font-weight: 700; text-decoration: none; border-bottom: 2px solid black; font-family: var(--font-heading); font-size: 0.8rem;">EDIT</a>
+                                    <form action="/home/<%= post._id %>/delete" method="POST"
+                                        onsubmit="return confirm('Archive story?')">
+                                        <button type="submit"
+                                            style="background: none; border: none; color: var(--accent-orange); font-weight: 700; cursor: pointer; font-family: var(--font-heading); font-size: 0.8rem;">DELETE</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="magazine-footer">
+        <div class="brand-main" style="font-size: 4rem; letter-spacing: -2px; text-align: left;">ZORA ADMIN</div>
+    </footer>
+</body>
+
+</html>

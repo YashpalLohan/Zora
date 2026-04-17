@@ -6,7 +6,6 @@ yarn-debug.log
 yarn-error.log
 package-lock.json
 coverage/
-.env.*
 .idea/
 .vscode/
 *.log 

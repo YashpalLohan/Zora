@@ -8,6 +8,7 @@
     <link rel="icon" href="/images/favicon.jpg">
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="/js/scripts.js"></script>
     <style>
         .admin-table-container {
             background: white;
@@ -128,11 +129,42 @@
                                     <a href="/home/<%= post._id %>/edit"
                                         style="color: black; font-weight: 700; text-decoration: none; border-bottom: 2px solid black; font-family: var(--font-heading); font-size: 0.8rem;">EDIT</a>
                                     <form action="/home/<%= post._id %>/delete" method="POST"
-                                        onsubmit="return confirm('Archive story?')">
+                                        onsubmit="return confirmDelete(this, 'Permanently remove this article from the system?')">
                                         <button type="submit"
                                             style="background: none; border: none; color: var(--accent-orange); font-weight: 700; cursor: pointer; font-family: var(--font-heading); font-size: 0.8rem;">DELETE</button>
                                     </form>
                                 </div>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title" style="font-size: 3rem; margin-top: 6rem; margin-bottom: 2rem;">Active Curators</h2>
+        <div class="admin-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>FULL NAME</th>
+                        <th>USERNAME</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user=> { %>
+                        <tr>
+                            <td style="font-weight: 700; font-family: var(--font-heading); font-size: 1.25rem;">
+                                <%= (user.name || 'Anonymous Curator' ).toUpperCase() %>
+                            </td>
+                            <td style="font-style: italic;">
+                                @<%= user.username %>
+                            </td>
+                            <td>
+                                <span
+                                    style="background: <%= user.isAdmin ? 'var(--accent-orange)' : '#eee' %>; color: <%= user.isAdmin ? 'white' : '#666' %>; padding: 0.5rem 1rem; font-size: 0.7rem; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase;">
+                                    <%= user.isAdmin ? 'ADMIN' : 'MEMBER' %>
+                                </span>
                             </td>
                         </tr>
                         <% }); %>

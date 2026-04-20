@@ -8,6 +8,7 @@
     <link rel="icon" href="/images/favicon.jpg">
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="/js/scripts.js"></script>
 </head>
 
 <body>
@@ -18,6 +19,8 @@
             <div class="brand-main">ZORA</div>
             <div style="display: flex; gap: 1.5rem; align-items: center;">
                 <% if (typeof currentUser !=='undefined' && currentUser) { %>
+                    <a href="/home/create" class="btn-orange"
+                        style="padding: 0.5rem 1.5rem; font-size: 0.8rem; border-radius: 4px;">PUBLISH</a>
                     <span style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700;">
                         <%= (currentUser.name || currentUser.username).toUpperCase() %>
                     </span>
@@ -151,7 +154,7 @@
 
                     <div class="stories-grid">
                         <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-                            <% for(let i=1; i < Math.min(posts.length, 4); i++) { %>
+                            <% for(let i=0; i < Math.min(posts.length, 4); i++) { %>
                                 <div class="story-card-small">
                                     <div class="img-container">
                                         <img src="<%= posts[i].imageUrl || '/images/default-blog.jpg' %>">
@@ -175,7 +178,7 @@
                                                 <a href="/home/<%= posts[i]._id %>/edit"
                                                     style="color: var(--accent-orange); text-decoration: none; font-size: 0.8rem; font-family: var(--font-heading); text-transform: uppercase; font-weight: 700;">EDIT</a>
                                                 <form action="/home/<%= posts[i]._id %>/delete" method="POST"
-                                                    style="display:inline;" onsubmit="return confirm('Delete?')">
+                                                    style="display:inline;" onsubmit="return confirmDelete(this, 'Permanently remove this story from the archive?')">
                                                     <button type="submit"
                                                         style="background:none; border:none; color:#ccc; cursor:pointer; font-family:var(--font-heading); font-size:0.8rem;">DELETE</button>
                                                 </form>
@@ -211,7 +214,7 @@
                                             style="color: var(--accent-orange); text-decoration: none; font-size: 0.8rem; font-family: var(--font-heading); text-transform: uppercase; font-weight: 700;">EDIT
                                             STORY</a>
                                         <form action="/home/<%= posts[4]._id %>/delete" method="POST"
-                                            onsubmit="return confirm('Delete story?')">
+                                            onsubmit="return confirmDelete(this, 'Permanently remove this story from the archive?')">
                                             <button type="submit"
                                                 style="background:none; border:none; color:#ccc; cursor:pointer; font-family:var(--font-heading); font-size:0.8rem;">DELETE</button>
                                         </form>
@@ -492,7 +495,15 @@
                 slideInterval = setInterval(() => showS(currentS + 1), 4000);
             }
 
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            // Initialize auto-play
+            startInterval();
         });
+
 
         // Subscription Handler (Moved outside for global scope)
         function handleSubscribe() {

@@ -245,28 +245,6 @@ router.get('/home', isLoggedIn, async (req, res) => {
     }
 });
 
-// Individual post view
-router.get('/home/:id', isLoggedIn, async (req, res) => {
-    try {
-        const post = await postModel.findById(req.params.id).populate('author');
-        if (!post) {
-            return res.status(404).render('error', {
-                error: { message: 'Story not found in archive' }
-            });
-        }
-        res.render('show', {
-            post,
-            currentUser: req.user,
-            isAdmin: res.locals.isAdmin
-        });
-    } catch (err) {
-        console.error('Error fetching post:', err);
-        res.status(500).render('error', {
-            error: { message: 'Error loading story' }
-        });
-    }
-});
-
 // Create post page
 router.get('/home/create', isLoggedIn, (req, res) => {
     const isAdmin = req.user.isAdminUser();
@@ -305,6 +283,28 @@ router.post('/home/create', isLoggedIn, async (req, res) => {
         console.error('Error creating post:', err);
         res.status(500).render('error', {
             error: { message: 'Error creating post: ' + err.message }
+        });
+    }
+});
+
+// Individual post view
+router.get('/home/:id', isLoggedIn, async (req, res) => {
+    try {
+        const post = await postModel.findById(req.params.id).populate('author');
+        if (!post) {
+            return res.status(404).render('error', {
+                error: { message: 'Story not found in archive' }
+            });
+        }
+        res.render('show', {
+            post,
+            currentUser: req.user,
+            isAdmin: res.locals.isAdmin
+        });
+    } catch (err) {
+        console.error('Error fetching post:', err);
+        res.status(500).render('error', {
+            error: { message: 'Error loading story' }
         });
     }
 });

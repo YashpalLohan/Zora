@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.jpg">
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="/js/scripts.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,12 @@
             <div class="brand-main">ARCHIVE</div>
             <div style="display: flex; gap: 1rem; align-items: center;">
                 <a href="/home" class="btn-orange" style="padding: 0.5rem 1.5rem;">BACK</a>
+                <% if (typeof currentUser !=='undefined' && currentUser) { %>
+                    <a href="/home/create" class="btn-orange"
+                        style="padding: 0.5rem 1.5rem; font-size: 0.8rem; border-radius: 4px;">PUBLISH</a>
+                    <% } %>
             </div>
+
         </div>
     </header>
 
@@ -55,7 +61,7 @@
                         style="margin-top: 4rem; display: flex; gap: 1rem; border-top: var(--border-thin); padding-top: 2rem;">
                         <a href="/home/<%= post._id %>/edit" class="btn-orange">EDIT NARRATIVE</a>
                         <form action="/home/<%= post._id %>/delete" method="POST"
-                            onsubmit="return confirm('Permanently remove this archive?')">
+                            onsubmit="return confirmDelete(this, 'Permanently remove this archive entry?')">
                             <button type="submit" class="btn-orange btn-outline">DELETE</button>
                         </form>
                     </div>

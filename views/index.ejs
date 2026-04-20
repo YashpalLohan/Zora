@@ -59,7 +59,11 @@
             <div class="brand-main">ZORA</div>
             <div style="display: flex; gap: 1rem; align-items: center;">
                 <% if (typeof currentUser !=='undefined' && currentUser) { %>
-                    <a href="/logout" style="color: black; font-size: 1.2rem;"><i class="fas fa-sign-out-alt"></i></a>
+                    <a href="/home" class="btn-orange" style="padding: 0.5rem 1.5rem;">HOME</a>
+                    <a href="/home/create" class="btn-orange"
+                        style="padding: 0.5rem 1.5rem; font-size: 0.8rem; border-radius: 4px;">PUBLISH</a>
+                    <a href="/logout" style="color: black; font-size: 1.2rem; margin-left: 1rem;"><i
+                            class="fas fa-sign-out-alt"></i></a>
                     <% } else { %>
                         <a href="/login" class="btn-orange">LOGIN</a>
                         <% } %>
